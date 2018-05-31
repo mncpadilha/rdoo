@@ -1,0 +1,49 @@
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<h1><?php echo $this->escapeHtml("DevOps  Ranking"); ?></h1>
+
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<th>ID</th>
+		<th>Usuarios</th>
+		<th>Rank</th>
+		<th>Pontos</th>
+		<th></th>
+	</thead>
+	<tbody>
+	<?php
+		$i = 0;
+		foreach($posts as $post):
+			++$i;
+	?>
+		<tr>
+			<td><?= $post->id; ?></td>
+			<td><?= $this->escapeHtml($post->nome); ?></td> 
+			<td><?= $i; ?></td>
+			<td><?= $this->escapeHtml($post->pontos); ?></td>
+			<td width="15%" align="center">
+				<a href="<?=$this->url('post', ['action'=> 'edit', 'id' => $post->id]); ?>" class="btn btn-sm btn-success">
+					Editar
+				</a>
+				<a href="<?=$this->url('post', ['action'=> 'delete', 'id' => $post->id]); ?>" onclick="return confirm('Você quer realmente excluir ?')" class="btn btn-sm btn-danger">
+					Deletar
+				</a>
+				
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">Total de <?= count($posts); ?> usúarios cadastrados</td>
+			<td width="15%" align="center">
+				<a href="<?=$this->url('post', ['action'=>'add']); ?>" class="btn btn-sm btn-info">
+					Cadastrar
+				</a>
+			</td>
+	</tfoot>
+</table>
